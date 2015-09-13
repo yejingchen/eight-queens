@@ -93,13 +93,14 @@ place_queens(int num_queen)
 	if (num_queen == NQUEEN) {	/* 最后一个皇后 */
 		for (j = 1; j <= NQUEEN; j++) {
 			queen[num_queen].y = j;
-			for (k = 1; k < num_queen; k++)	/* 开始验证是否同行列斜 */
-				if (!is_corrupt(&queen[k], &queen[num_queen])) {
-					nmethods++;
+			for (k = 1; k < num_queen; k++)	{/* 开始验证是否同行列斜 */
+				if (is_corrupt(&queen[k], &queen[num_queen]))
+					break;
+				nmethods++;
 #ifdef DEBUG
-					printf("%d\n", nmethods);
+				printf("%d\n", nmethods);
 #endif /* DEBUG */
-				}
+			}
 		}
 	} else if (num_queen == 1) {	/* 第一个皇后 */
 		for (j = 1; j <= NQUEEN; j++) {
@@ -111,9 +112,8 @@ place_queens(int num_queen)
 			queen[num_queen].y = j;
 			for (k = 1; k < num_queen; k++) {
 				if (is_corrupt(&queen[k], &queen[num_queen]))
-					continue;
-				else
-					place_queens(num_queen+1);
+					break;
+				place_queens(num_queen+1);
 			}
 		}
 	}
