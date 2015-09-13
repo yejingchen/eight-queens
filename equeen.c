@@ -51,9 +51,7 @@ is_on_same_diagonal(Queen *a, Queen *b)
 {
 	int up, down;
 	down = ((a->x + a->y) == (b->x + b->y));
-	up = (
-					( abs(b->x - a->x) / abs(b->y - a->y) ) == 1
-					);
+	up = (abs(b->x - a->x) == abs(b->y - a->y));
 
 	return (up || down);
 }
