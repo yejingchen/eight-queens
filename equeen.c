@@ -75,10 +75,10 @@ print(void)
 			if (queen[x].y == line)
 				break;
 		for (i = 1; i < x; i++)
-			printf("口");
+			printf("～");
 		printf("山");
 		for (i = x+1; i <= NQUEEN; i++)
-			printf("口");
+			printf("～");
 
 		putchar('\n');
 	}
@@ -100,7 +100,7 @@ place_queens(int num_queen)
 				if (is_corrupt(&queen[k], &queen[num_queen]))
 					break;
 			}
-			if (k == num_queen-1) {
+			if (k == num_queen) {
 				nmethods++;
 				print();
 			}
@@ -117,7 +117,7 @@ place_queens(int num_queen)
 				if (is_corrupt(&queen[k], &queen[num_queen]))
 					break;
 			}
-			if (k == num_queen-1)
+			if (k == num_queen)
 				place_queens(num_queen+1);
 		}
 	}
