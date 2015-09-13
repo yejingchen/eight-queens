@@ -79,7 +79,10 @@ print(void)
 		printf("山");
 		for (i = x+1; i <= NQUEEN; i++)
 			printf("口");
+
+		putchar('\n');
 	}
+	putchar('\n');
 }
 
 void
@@ -96,10 +99,10 @@ place_queens(int num_queen)
 			for (k = 1; k < num_queen; k++)	{/* 开始验证是否同行列斜 */
 				if (is_corrupt(&queen[k], &queen[num_queen]))
 					break;
+			}
+			if (k == num_queen-1) {
 				nmethods++;
-#ifdef DEBUG
-				printf("%d\n", nmethods);
-#endif /* DEBUG */
+				print();
 			}
 		}
 	} else if (num_queen == 1) {	/* 第一个皇后 */
@@ -113,8 +116,9 @@ place_queens(int num_queen)
 			for (k = 1; k < num_queen; k++) {
 				if (is_corrupt(&queen[k], &queen[num_queen]))
 					break;
-				place_queens(num_queen+1);
 			}
+			if (k == num_queen-1)
+				place_queens(num_queen+1);
 		}
 	}
 }
