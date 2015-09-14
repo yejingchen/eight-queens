@@ -5,6 +5,7 @@
  * 同一对角线上，求有多少种摆法。
  */
 #include <stdio.h>
+#include <string.h>
 
 #define NQUEEN 8
 
@@ -16,12 +17,18 @@ struct _queen {
 
 Queen queen[NQUEEN+1];
 int nmethods = 0;
+int verbose = 0;
 
 void place_queens(int num_queen);
 
 int
 main(int argc, char *argv[])
 {
+	int i;
+	for (i = 1; i < argc; i++)
+		if (strcmp("-v", argv[i]) == 0)
+			verbose = 1;
+
 	place_queens(1);
 	printf("%d\n", nmethods);
 
@@ -102,7 +109,8 @@ place_queens(int num_queen)
 			}
 			if (k == num_queen) {
 				nmethods++;
-				print();
+				if (verbose)
+					print();
 			}
 		}
 	} else if (num_queen == 1) {	/* 第一个皇后 */

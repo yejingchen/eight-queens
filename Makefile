@@ -2,13 +2,7 @@ CC=gcc
 default: equeen
 
 equeen: equeen.c
-	${CC} $+ -o $@ -g -Wall
+	${CC} $+ -o $@ -Wall
 
 debug: equeen.c
-	${CC} $+ -o $@ -g -Wall -DDEBUG
-
-clean:
-	if [ -f equeen ]
-	then
-	rm equeen
-	fi
+	${CC} $+ -o equ-debug -g -Wall -DDEBUG
